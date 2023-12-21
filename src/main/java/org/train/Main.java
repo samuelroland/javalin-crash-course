@@ -1,9 +1,12 @@
 package org.train;
 
+
+import io.javalin.Javalin;
+
 public class Main {
 	static final String HELLO_MESSAGE = "Hello from Comment?";
 	static final int PORT = 7000;
-	// static Javalin server;
+	static Javalin server;
 
 	public static void main(String[] args) {
 		// server = setupApp().start(PORT);
