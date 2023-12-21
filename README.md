@@ -93,7 +93,9 @@ Javalin crash course
 The first test `home_page_returns_welcome_message` should also pass !
 
 1. Implement everything required to make tests in `UsersTest.java`.
-   1. Routes definition will be in `Main` but your logic related to users must be in a controller file like `UsersController.java`. You need a model too like `User.java`. Make sure the attributes you want to be in the JSON content are public ! And that there is a default constructor, or you will get parsing errors from Jackson.
+   1. I already prepared a working model `User.java` inside a `models` subfolder.
+   1. Routes definition will be in `Main` but your logic related to users must be in a controller file like `UsersController.java`, you can create a subfolder `controllers` for them to not mix them with other classes.
+   <!-- 1. Make sure the attributes you want to be in the JSON content are public ! And that there is a default constructor, or you will get parsing errors from Jackson. -->
    1. Store your users into a `ConcurrentHashMap` with integer keys and User values.
    1. To return the elements of the hashmap not the indexed content, use the `.elements()`
    1. Use exception `NotFoundResponse` instead of just a 404 status
