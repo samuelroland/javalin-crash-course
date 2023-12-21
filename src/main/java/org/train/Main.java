@@ -21,6 +21,7 @@ public class Main {
 		// Define a GET route on / to send the HELLO_MESSAGE
 		// Defines routes for users
 
-		return app;
+
+		// return app;
 	}
 }
