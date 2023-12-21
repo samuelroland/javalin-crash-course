@@ -60,46 +60,48 @@ As you noticed passwords are not hashed, this is very bad in terms of security, 
 ## Steps
 There is no authentication and login system, there is no permission system, everyone can do any action on all items. Your goal is to implement the basic CRUD (Create Read Update Delete) operations on comments and users, and on top of that a few sort and filter system on comments to discover more parts of the Javalin framework. The route are defined in the tests and documented here so you learn to read and understand those tests !
 
-To make these tests fully pass you have to:
-1. Setup the `Main` class to have a working Javalin server on the given port, returns the welcome message. Then build and run the app with this command:
-```bash
-mvn package -DskipTests -Dmaven.test.skip=true -T 8 && java -jar target/server-*.jar
-```
+**To make these tests fully pass you have to:**
 
-This kind of output on the server start is expected:
-```
-22:53:43.119 [main] INFO  io.javalin.Javalin - Starting Javalin ...
-22:53:43.269 [main] INFO  org.eclipse.jetty.server.Server - jetty-11.0.17; built: 2023-10-09T18:39:14.424Z; git: 48e7716b9462bebea6732b885dbebb4300787a5c; jvm 21.0.1+12
-22:53:43.344 [main] INFO  o.e.j.s.s.DefaultSessionIdManager - Session workerName=node0
-22:53:43.356 [main] INFO  o.e.j.server.handler.ContextHandler - Started i.j.j.@72035809{/,null,AVAILABLE}
-22:53:43.374 [main] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@66d18979{HTTP/1.1, (http/1.1)}{0.0.0.0:7000}
-22:53:43.395 [main] INFO  org.eclipse.jetty.server.Server - Started Server@57250572{STARTING}[11.0.17,sto=0] @643ms
-22:53:43.395 [main] INFO  io.javalin.Javalin - 
-       __                  ___          ______
-      / /___ __   ______ _/ (_)___     / ____/
- __  / / __ `/ | / / __ `/ / / __ \   /___ \
-/ /_/ / /_/ /| |/ / /_/ / / / / / /  ____/ /
-\____/\__,_/ |___/\__,_/_/_/_/ /_/  /_____/
+- [ ] Setup the `Main` class to have a working Javalin server on the given port, returns the welcome message. Then build and run the app with this command:
+	```bash
+	mvn package -DskipTests -Dmaven.test.skip=true -T 8 && java -jar target/server-*.jar
+	```
 
-       https://javalin.io/documentation
+	This kind of output on the server start is expected:
+	```
+	22:53:43.119 [main] INFO  io.javalin.Javalin - Starting Javalin ...
+	22:53:43.269 [main] INFO  org.eclipse.jetty.server.Server - jetty-11.0.17; built: 2023-10-09T18:39:14.424Z; git: 48e7716b9462bebea6732b885dbebb4300787a5c; jvm 21.0.1+12
+	22:53:43.344 [main] INFO  o.e.j.s.s.DefaultSessionIdManager - Session workerName=node0
+	22:53:43.356 [main] INFO  o.e.j.server.handler.ContextHandler - Started i.j.j.@72035809{/,null,AVAILABLE}
+	22:53:43.374 [main] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@66d18979{HTTP/1.1, (http/1.1)}{0.0.0.0:7000}
+	22:53:43.395 [main] INFO  org.eclipse.jetty.server.Server - Started Server@57250572{STARTING}[11.0.17,sto=0] @643ms
+	22:53:43.395 [main] INFO  io.javalin.Javalin - 
+		__                  ___          ______
+		/ /___ __   ______ _/ (_)___     / ____/
+	__  / / __ `/ | / / __ `/ / / __ \   /___ \
+	/ /_/ / /_/ /| |/ / /_/ / / / / / /  ____/ /
+	\____/\__,_/ |___/\__,_/_/_/_/ /_/  /_____/
 
-22:53:43.395 [main] INFO  io.javalin.Javalin - Your JDK supports Loom. Javalin will prefer Virtual Threads by default. Disable with `ConcurrencyUtil.useLoom = false`.
-22:53:43.401 [main] INFO  io.javalin.Javalin - Listening on http://localhost:7000/
-22:53:43.414 [main] INFO  io.javalin.Javalin - You are running Javalin 5.6.3 (released October 15, 2023).
-22:53:43.417 [main] INFO  io.javalin.Javalin - Javalin started in 299ms \o/
-Javalin crash course
-```
+		https://javalin.io/documentation
 
-The first test `home_page_returns_welcome_message` should also pass !
+	22:53:43.395 [main] INFO  io.javalin.Javalin - Your JDK supports Loom. Javalin will prefer Virtual Threads by default. Disable with `ConcurrencyUtil.useLoom = false`.
+	22:53:43.401 [main] INFO  io.javalin.Javalin - Listening on http://localhost:7000/
+	22:53:43.414 [main] INFO  io.javalin.Javalin - You are running Javalin 5.6.3 (released October 15, 2023).
+	22:53:43.417 [main] INFO  io.javalin.Javalin - Javalin started in 299ms \o/
+	Javalin crash course
+	```
 
-1. Implement everything required to make tests in `UsersTest.java`.
+	The first test `home_page_returns_welcome_message` should also pass !
+
+- [ ] Implement everything required to make tests in `UsersTest.java`.
    1. I already prepared a working model `User.java` inside a `models` subfolder.
    1. Routes definition will be in `Main` but your logic related to users must be in a controller file like `UsersController.java`, you can create a subfolder `controllers` for them to not mix them with other classes.
    <!-- 1. Make sure the attributes you want to be in the JSON content are public ! And that there is a default constructor, or you will get parsing errors from Jackson. -->
-   1. Store your users into a `ConcurrentHashMap` with integer keys and User values.
+   1. For each action, create a new route with the correct HTTP verb, create a new method in your controller and develop it until the test pass.
+   1. To simulate a db, you can store your users into a `ConcurrentHashMap` with integer keys and User values
    1. To return the elements of the hashmap not the indexed content, use the `.elements()`
    1. Use exception `NotFoundResponse` instead of just a 404 status
-1. Implement everything required to make tests in `CommentsTest.java`.
+- [ ] Implement everything required to make tests in `CommentsTest.java`.
    1. NOT IMPLEMENT FOR NOW sorry...
    1. Same rules and idea that for users.
 
