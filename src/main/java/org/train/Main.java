@@ -11,7 +11,9 @@ public class Main {
 	public static void main(String[] args) {
 		// server = setupApp().start(PORT);
 
-		System.out.println("Javalin crash course");
+		System.out.println("Javalin crash course - server started !");
+
+		server.after(ctx -> System.out.println("Quitting server..."));
 	}
 
 	// Separated method to easily test the server
