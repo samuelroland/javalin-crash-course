@@ -102,8 +102,12 @@ There is no authentication and login system, there is no permission system, ever
    1. To return the elements of the hashmap not the indexed content, use the `.elements()`
    1. Use exception `NotFoundResponse` instead of just a 404 status
 - [ ] Implement everything required to make tests in `CommentsTest.java`.
-   1. NOT IMPLEMENT FOR NOW sorry...
+   1. NO TESTS FOR NOW sorry...
    1. Same rules and idea that for users.
+- [ ] Implementing passwords hashing and hiding
+   1. NO TESTS FOR NOW sorry...
+- [ ] Implementing an authentication system
+   1. NO TESTS FOR NOW sorry...
 
 ## Contribution
 If you would like to improve this project, improve some explanations, add tests and their features, you are welcome ! Just try to send small PRs with a single goal, so it's easier to review and discuss changes.
