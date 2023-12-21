@@ -14,7 +14,6 @@ import io.javalin.testtools.JavalinTest;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.train.controllers.UsersController;
 import org.train.models.*;
 
 public class UsersTest {
