@@ -17,11 +17,12 @@ public class Main {
 	// Separated method to easily test the server
 	public static Javalin setupApp() {
 		// Create the Javalin server and start of given port
+		Javalin app = null;// TODO
 
 		// Define a GET route on / to send the HELLO_MESSAGE
 		// Defines routes for users
 
 
-		// return app;
+		return app;
 	}
 }
