@@ -12,6 +12,7 @@ In this small experimentation course, the main goal is to help you getting start
 1. The MVC design pattern. Important to understand the roles of each class type.
 1. Managing responses content, status codes, fake database with in memory Hashmap, using headers and body of the requests, defining them in the response.
 1. The creation of views with a simple templating system (yet to choose one, Javalin doesn't support one by default). We will use it to have dynamic welcome page.
+1. Set up a basic authentication system, to discover some middlewares mechanisms
 1. Writing some integration tests allowing to easily verify that everything works well and continues to work after refactorings and changes.
 
 **Data model**
