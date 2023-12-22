@@ -1,11 +1,22 @@
 # Javalin crash course
-A pretty small crash course on [Javalin](https://javalin.io/), a simple Java web framework, just to get started with importants concepts to develop a web API.
+A pretty small crash course on [Javalin](https://javalin.io/), a simple Java web framework, just to get started with important concepts to develop a web application. This is not guided on the details, but you have integration tests to verify the correctness of the implemented behaviours.
 
 You are going to create a simple comments system called `Comment?` (this is a French joke, don't lose time understanding it).
 
-Your API only supports operations related to comments and their authors.
+## Goals
+In this small experimentation course, the main goal is to help you getting started and be productive with Javalin, not by reading the full documentation but training on developing simple features to let you build a basic mental model on how Javalin works and you can structure your application with the MVC design pattern. <!-- really a design pattern btw ? -->
 
-First an example of comments:
+**What exactly are you going to practice ?**
+1. Creating routes for all CRUD operations
+1. Creating controllers and use to understand a simple convention related to CRUD methods naming
+1. The MVC design pattern
+1. Managing responses content, status codes, fake database with in memory Hashmap, using headers and body of the requests, defining them in the response.
+1. The creation of views with a simple templating system (yet to choose one, Javalin doesn't support one by default). We will use it to have dynamic welcome page.
+1. Some examples on how to write integration tests allowing to easily verify that most of the implemented behaviours really works and continue to work with refactorings and changes.
+
+**Data model**
+We have only 2 entities: users and comments. I already prepared a model `Comment.java` inside `models` as this is not very interesting to do:
+<!-- TODO: commit the model Comment! -->
 ```json
 [
 	{
@@ -35,7 +46,7 @@ First an example of comments:
 ]
 ```
 
-Then an example of users:
+Then an example of users. I prepared a model `User.java` inside `models` too.
 ```json
 [
 	{
@@ -57,12 +68,63 @@ Then an example of users:
 ```
 As you noticed passwords are not hashed, this is very bad in terms of security, but you will implement this later.
 
+## Solution
+At the end, I will provide my humble solution in case you are really stuck, or you want to compare. I will push it in a separate branch.
+
+## Setup
+Here are some advices on the environment and IDE setup.
+
+I really recommand you to read this document online on GitHub, not in your local or forked version, to access the latest version because this is in a very changing phases.
+
+### Dependencies
+To download Maven dependencies run these commands:
+```bash
+
+```
+
+TODO: document this
+- download dependencies
+- setup ide to run tests
+
+## Repos structure
+<!-- TODO: update this at the end -->
+The files related to our Javalin app, part of them are not provided and must be created.
+```
+pom.xml
+── src
+    ├── main
+    │   └── java
+    │       └── org
+    │           └── train
+    │               ├── controllers
+    │               │   └── UsersController.java
+    │               ├── Main.java
+    │               └── models
+    │                   └── User.java
+    └── test
+        └── java
+            └── org
+                └── train
+                    ├── AppTest.java
+                    └── UsersTest.java
+```
+
 ## Steps
 There is no authentication and login system, there is no permission system, everyone can do any action on all items. Your goal is to implement the basic CRUD (Create Read Update Delete) operations on comments and users, and on top of that a few sort and filter system on comments to discover more parts of the Javalin framework. The route are defined in the tests and documented here so you learn to read and understand those tests !
 
-**To make these tests fully pass you have to:**
+TODO: refactor some tests to improve readability
+TODO: add comments on tests to make them easier to read
+TODO: develop comments system
+TODO: develop comments filtering
+TODO: improve explanations and steps details
+TODO: finish and explain Bruno routes ?? really useful ? 
 
-- [ ] Setup the `Main` class to have a working Javalin server on the given port, returns the welcome message. Then build and run the app with this command:
+**To make these tests fully pass, here are the various steps to follow in order. If you are stuck, don't forget to come back in the info because you have hints or advices on how to handle errors or some details.**
+
+- [ ] Setup the `Main` class to have a working Javalin server on the given port, returns the welcome message. 
+  1. You have to setup the server by uncommenting some lines in `Main` and completing when incomplete. Help yourself with the slides or the [Javalin documentation](https://javalin.io/documentation#getting-started).
+  1. You have to setup the server by uncommenting some lines in `Main`
+  - [ ] Then build and run the app with this command:
 	```bash
 	mvn package -DskipTests -Dmaven.test.skip=true -T 8 && java -jar target/server-*.jar
 	```
@@ -90,11 +152,9 @@ There is no authentication and login system, there is no permission system, ever
 	22:53:43.417 [main] INFO  io.javalin.Javalin - Javalin started in 299ms \o/
 	Javalin crash course
 	```
-
-	The first test `home_page_returns_welcome_message` should also pass !
+	As the `/` The first test `home_page_returns_welcome_message` should also pass !
 
 - [ ] Implement everything required to make tests in `UsersTest.java`.
-   1. I already prepared a working model `User.java` inside a `models` subfolder.
    1. Routes definition will be in `Main` but your logic related to users must be in a controller file like `UsersController.java`, you can create a subfolder `controllers` for them to not mix them with other classes.
    <!-- 1. Make sure the attributes you want to be in the JSON content are public ! And that there is a default constructor, or you will get parsing errors from Jackson. -->
    1. For each action, create a new route with the correct HTTP verb, create a new method in your controller and develop it until the test pass.
