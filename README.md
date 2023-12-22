@@ -9,10 +9,10 @@ In this small experimentation course, the main goal is to help you getting start
 **What exactly are you going to practice ?**
 1. Creating routes for all CRUD operations
 1. Creating controllers and use to understand a simple convention related to CRUD methods naming
-1. The MVC design pattern
+1. The MVC design pattern. Important to understand the roles of each class type.
 1. Managing responses content, status codes, fake database with in memory Hashmap, using headers and body of the requests, defining them in the response.
 1. The creation of views with a simple templating system (yet to choose one, Javalin doesn't support one by default). We will use it to have dynamic welcome page.
-1. Some examples on how to write integration tests allowing to easily verify that most of the implemented behaviours really works and continue to work with refactorings and changes.
+1. Writing some integration tests allowing to easily verify that everything works well and continues to work after refactorings and changes.
 
 **Data model**
 We have only 2 entities: users and comments. I already prepared a model `Comment.java` inside `models` as this is not very interesting to do:
