@@ -77,15 +77,44 @@ Here are some advices on the environment and IDE setup.
 
 I really recommand you to read this document online on GitHub, not in your local or forked version, to access the latest version because this is in a very changing phases.
 
-### Dependencies
+Recommended VSCode setup:
+1. Install the Java Test Runner extension
+1. Use this keyboard shortcut configuration (Commande Palette -> Keyboard shortcuts (JSON)) (put this inside some square brackets `[]` if your file is empty):
+	```json
+	{
+		"key": "ctrl+e",
+		"when": "editorLangId == java",
+		"command": "runCommands",
+		"args": {
+			"commands": [
+				{
+					"command": "workbench.view.testing.focus"
+				},
+				{
+					"command": "workbench.action.focusActiveEditorGroup"
+				},
+				{
+					"command": "testing.clearTestResults"
+				},
+				{
+					"command": "testing.runAll",
+				}
+			]
+		}
+	},
+	```
+	Now when you open a java file and press Ctrl+e, it will run all tests and focus on the testing panel.
+	![tests-run-vscode.png](imgs/tests-run-vscode.png)
+
+<!-- ### Dependencies
 To download Maven dependencies run these commands:
 ```bash
-
+mvn package
 ```
 
 TODO: document this
 - download dependencies
-- setup ide to run tests
+- setup ide to run tests -->
 
 ## Repos structure
 <!-- TODO: update this at the end -->
